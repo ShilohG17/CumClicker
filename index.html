@@ -1,5 +1,17 @@
-<script src="./index.js"></script>
+<script src="./functions.js" charset="utf-8"></script>
+<h1 id="clickbox"><h1>
 
-<h1 id="clicks"><h1>
+<button id="clickButton"> Click here</button>
 
-<button onclick="Click(clicks, clickboost)"></button>
+<script>
+var clicks = getCookie(clicks); // getCookie is not defined
+var clickboost = 1;
+document.getElementById("clickbox").innerHTML = clicks;
+document.getElementById("clickButton").addEventListener("click", () => {
+  clicks = Click(clicks, clickboost)
+  // console.log(clicks)
+  document.getElementById("clickbox").innerHTML = clicks;
+  document.cookie = "cums=clicks;expires=Sun, 09 Jun 2069 00:04:20 UTC";
+})
+
+</script>

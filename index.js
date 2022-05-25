@@ -1,7 +1,3 @@
-import {Click()} from './functions.js';
 
-var clicks = 0;
-var clickboost = 1;
-var clickText = document.getElementById("clicks");
-var text = document.createTextNode("This just got added");
-text.appendChild(clickText);
+
+// not being used atm, idek why i made this to begin with XD
