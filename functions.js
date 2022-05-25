@@ -1,15 +1,15 @@
 
-function Click(clicks, clickboost){
-  newClicks = applyUpgrades(clicks, clickboost);
+function Click(clicks, clickBoost){ // gets called when clicked on
+  newClicks = applyUpgrades(clicks, clickBoost);
   return newClicks;
 }
 
-function applyUpgrades(clicks, clickboost){
-  clicks = clicks + clickboost;
+function applyUpgrades(clicks, clickBoost){
+  clicks = clicks + clickBoost;
   return clicks;
 }
 
-function getCookie(cname) {
+function getCookie(cname) { // cookie stuff... stol- i mean borrowed from w3schools
   let name = cname + "=";
   let ca = document.cookie.split(';');
   for(let i = 0; i < ca.length; i++) {
