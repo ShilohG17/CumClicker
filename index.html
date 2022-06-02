@@ -9,25 +9,30 @@ var clicks = Number(getCookie("cums")) ? Number(getCookie("cums")) : 0; // if th
 var clickBoost = Number(getCookie("cumgrades")) ? Number(getCookie("cumgrades")) : 1; // if the cookie exists, use that... otherwise be 1
 var clickPrice = Number(getCookie("cumgrades")) ? Number(getCookie("cumgrades")) : 10; // if the cookie exists, use that... otherwise be 10
 document.getElementById("clickBox").innerHTML = clicks; // put the amount of collected clicks in the clickBox
-document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + math.floor(clickPrice); // put the clickPRice in the upgradeButton
+document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + Math.floor(clickPrice); // put the clickPRice in the upgradeButton
 
 document.getElementById("clickButton").addEventListener("click", () => { // when the button is clicked
   clicks = Click(clicks, clickBoost); // increase clicks
   document.getElementById("clickBox").innerHTML = clicks; // show the new amount of clicks
-  
+
   document.cookie = `cums=${clicks};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // save the clicks for later
 })
 
 document.getElementById("upgradeButton").addEventListener("click", () => {
-  if(clicks => clickPrice){ // if you have more or same amount of clicks as the price
+  if(clicks >= clickPrice){ // if you have more or same amount of clicks as the price
     clickPrice = clickPrice + (clickPrice/100*20); // increase the price by 20%
-    clicks = clicks - math.Floor(clickPrice); // subtract the price from the clicks
+    clickPrice = Math.floor(clickPrice); // round clickPrice down
+    console.log(clickPrice);
+
+    clicks = clicks - clickPrice; // subtract the price from the clicks
+    console.log(clicks);
     document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + clickPrice; // update the price in the button
     document.getElementById("clickBox").innerHTML = clicks; // update the clicks in the h1
     clickBoost++; // increase clickBoost by 1
 
+    document.cookie = `cums=${clicks};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // save the clicks for later
     document.cookie = `cumgrades=${clickBoost};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // put the upgrades in a cookie for saving it
-    document.cookie = `clickCost=${clickprice};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // put the clickPrice in a cookie for saving it
+    document.cookie = `clickCost=${clickPrice};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // put the clickPrice in a cookie for saving it
   }
 })
 
