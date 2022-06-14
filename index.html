@@ -7,7 +7,7 @@
 <script>
 var clicks = Number(getCookie("cums")) ? Number(getCookie("cums")) : 0; // if the cookie exists, use that... otherwise be 0
 var clickBoost = Number(getCookie("cumgrades")) ? Number(getCookie("cumgrades")) : 1; // if the cookie exists, use that... otherwise be 1
-var clickPrice = Number(getCookie("cumgrades")) ? Number(getCookie("cumgrades")) : 10; // if the cookie exists, use that... otherwise be 10
+var clickPrice = Number(getCookie("cumgrades")) ? Number(getCookie("clickCost")) : 10; // if the cookie exists, use that... otherwise be 10
 document.getElementById("clickBox").innerHTML = clicks; // put the amount of collected clicks in the clickBox
 document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + Math.floor(clickPrice); // put the clickPRice in the upgradeButton
 
@@ -19,13 +19,10 @@ document.getElementById("clickButton").addEventListener("click", () => { // when
 })
 
 document.getElementById("upgradeButton").addEventListener("click", () => {
-  if(clicks >= clickPrice){ // if you have more or same amount of clicks as the price
+  if(clicks >= clickPrice){ // if you have more or same amount of clicks as the clickPrice
+    clicks -= clickPrice; // subtract the price from the clicks
     clickPrice = clickPrice + (clickPrice/100*20); // increase the price by 20%
     clickPrice = Math.floor(clickPrice); // round clickPrice down
-    console.log(clickPrice);
-
-    clicks = clicks - clickPrice; // subtract the price from the clicks
-    console.log(clicks);
     document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + clickPrice; // update the price in the button
     document.getElementById("clickBox").innerHTML = clicks; // update the clicks in the h1
     clickBoost++; // increase clickBoost by 1
@@ -35,6 +32,11 @@ document.getElementById("upgradeButton").addEventListener("click", () => {
     document.cookie = `clickCost=${clickPrice};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // put the clickPrice in a cookie for saving it
   }
 })
+
+while(True){ // main loops... also fuck me
+  wait(1000); // this just waits 1000 milliseconds, what else did you expect?
+  cumsPerSecond();
+}
 
 </script>
 

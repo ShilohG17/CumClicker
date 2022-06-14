@@ -23,3 +23,7 @@ function getCookie(cname) { // cookie stuff... stol- i mean borrowed from w3scho
   }
   return "";
 }
+
+function wait(ms) {
+        return new Promise(res => setTimeout(res, ms))
+    }
