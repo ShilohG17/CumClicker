@@ -1,19 +1,19 @@
 <script src="./functions.js" charset="utf-8"></script>
 <h1 id="clickBox"><h1>
 
-<button id="clickButton"> Click here </button>
-<button id="upgradeButton"> Upgrade </button>
+<button id="clickButton"> Cum here </button>
+<button id="upgradeButton"> Cumgrade </button>
 
 <script>
 var clicks = Number(getCookie("cums")) ? Number(getCookie("cums")) : 0; // if the cookie exists, use that... otherwise be 0
 var clickBoost = Number(getCookie("cumgrades")) ? Number(getCookie("cumgrades")) : 1; // if the cookie exists, use that... otherwise be 1
 var clickPrice = Number(getCookie("cumgrades")) ? Number(getCookie("clickCost")) : 10; // if the cookie exists, use that... otherwise be 10
-document.getElementById("clickBox").innerHTML = clicks; // put the amount of collected clicks in the clickBox
-document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + Math.floor(clickPrice); // put the clickPRice in the upgradeButton
+document.getElementById("clickBox").innerHTML = clicks + " cums"; // put the amount of collected clicks in the clickBox
+document.getElementById("upgradeButton").innerHTML = "Cumgrade. Cost: " + Math.floor(clickPrice) + " cums"; // put the clickPRice in the upgradeButton
 
 document.getElementById("clickButton").addEventListener("click", () => { // when the button is clicked
   clicks = Click(clicks, clickBoost); // increase clicks
-  document.getElementById("clickBox").innerHTML = clicks; // show the new amount of clicks
+  document.getElementById("clickBox").innerHTML = clicks + " cums"; // show the new amount of clicks
 
   document.cookie = `cums=${clicks};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // save the clicks for later
 })
@@ -23,8 +23,8 @@ document.getElementById("upgradeButton").addEventListener("click", () => {
     clicks -= clickPrice; // subtract the price from the clicks
     clickPrice = clickPrice + (clickPrice/100*20); // increase the price by 20%
     clickPrice = Math.floor(clickPrice); // round clickPrice down
-    document.getElementById("upgradeButton").innerHTML = "Upgrade. Cost: " + clickPrice; // update the price in the button
-    document.getElementById("clickBox").innerHTML = clicks; // update the clicks in the h1
+    document.getElementById("upgradeButton").innerHTML = "Cumgrade. Cost: " + clickPrice + " cums"; // update the price in the button
+    document.getElementById("clickBox").innerHTML = clicks + " cums"; // update the clicks in the h1
     clickBoost++; // increase clickBoost by 1
 
     document.cookie = `cums=${clicks};expires=Sun, 09 Jun 2069 00:04:20 UTC`; // save the clicks for later
